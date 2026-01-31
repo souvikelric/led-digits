@@ -114,10 +114,15 @@ function showTime() {
 //setInterval(showTime, 1000);
 
 const scrollingDigit = new ScrollingDigit(wrapper);
+const scrollingDigit2 = new ScrollingDigit(wrapper);
 
 // code for counting from 0 to 9 smooothly using ScrollDigit class
 let n = 0;
 setInterval(() => {
-  scrollingDigit.set(n);
-  n = (n + 1) % 10;
+  let currentTime = new Date();
+  let seconds = currentTime.getSeconds();
+  let secondsDigit1 = seconds % 10;
+  let secondsDigit2 = Math.floor(seconds / 10);
+  scrollingDigit.set(secondsDigit2);
+  scrollingDigit2.set(secondsDigit1);
 }, 1000);
