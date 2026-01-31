@@ -2,7 +2,8 @@ const DIGIT_HEIGHT = 120;
 const DIGIT_GAP = 12;
 
 class ScrollingDigit {
-  constructor(wrapper) {
+  constructor(wrapper, maxValue = 9) {
+    this.maxValue = maxValue;
     this.window = document.createElement("div");
     this.window.classList.add("digit-window");
 
@@ -11,8 +12,8 @@ class ScrollingDigit {
 
     this.digits = [];
 
-    // create digits 0–9
-    for (let i = 0; i <= 9; i++) {
+    // create digits 0–maxValue
+    for (let i = 0; i <= this.maxValue; i++) {
       const digit = new LedDigit(this.stack);
       digit.setValue(i);
       this.digits.push(digit);
@@ -37,8 +38,8 @@ class ScrollingDigit {
     this.stack.style.transition = "transform 0.4s ease-in-out";
     this.stack.style.transform = `translateY(-${this.stepheight * num}px)`;
 
-    if (this.current === 9 && num === 0) {
-      this.stack.style.transform = `translateY(-${10 * this.stepheight}px)`;
+    if (this.current === this.maxValue && num === 0) {
+      this.stack.style.transform = `translateY(-${(this.maxValue + 1) * this.stepheight}px)`;
 
       // after animation ends, snap back
       setTimeout(() => {

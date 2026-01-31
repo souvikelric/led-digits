@@ -113,16 +113,37 @@ function showTime() {
 // createTimeObjects()
 //setInterval(showTime, 1000);
 
-const scrollingDigit = new ScrollingDigit(wrapper);
-const scrollingDigit2 = new ScrollingDigit(wrapper);
+const scrollingDigit5 = new ScrollingDigit(wrapper, 5);
+const scrollingDigit6 = new ScrollingDigit(wrapper, 9);
+
+const scrollingDigit3 = new ScrollingDigit(wrapper, 5);
+const scrollingDigit4 = new ScrollingDigit(wrapper, 9);
+
+const scrollingDigit = new ScrollingDigit(wrapper, 5);
+const scrollingDigit2 = new ScrollingDigit(wrapper, 9);
 
 // code for counting from 0 to 9 smooothly using ScrollDigit class
-let n = 0;
 setInterval(() => {
   let currentTime = new Date();
   let seconds = currentTime.getSeconds();
+  let minutes = currentTime.getMinutes();
+  let hours = currentTime.getHours();
+
   let secondsDigit1 = seconds % 10;
   let secondsDigit2 = Math.floor(seconds / 10);
+
+  let hourDigit1 = hours % 10;
+  let hourDigit2 = Math.floor(hours / 10);
+
+  let minutetenDigit1 = minutes % 10;
+  let minutetenDigit2 = Math.floor(minutes / 10);
+
   scrollingDigit.set(secondsDigit2);
   scrollingDigit2.set(secondsDigit1);
+
+  scrollingDigit4.set(minutetenDigit1);
+  scrollingDigit3.set(minutetenDigit2);
+
+  scrollingDigit5.set(hourDigit2);
+  scrollingDigit6.set(hourDigit1);
 }, 1000);
