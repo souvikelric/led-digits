@@ -1,0 +1,161 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#grid {
+  display: grid;
+  gap: 2px;
+}
+#pattern {
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+.wrapper {
+  padding: 20px;
+  display: flex;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+  margin-top: 30px;
+}
+
+.digit {
+  position: relative;
+  width: 70px;
+  height: 120px;
+  /* margin: 8px 10px; */
+}
+
+.seg {
+  position: absolute;
+  background: rgb(75, 73, 73);
+  border-radius: 6px;
+  opacity: 0;
+  box-shadow: 0 0 2px rgba(255, 0, 0, 0.15);
+  transform: scale(0.2);
+  transition:
+    background-color 0.5s ease,
+    opacity 0.2s ease,
+    transform 0.5s ease;
+}
+
+.seg.off {
+  background: rgb(75, 73, 73);
+  opacity: 0.5;
+}
+
+.seg.on {
+  background: red;
+  opacity: 1;
+  transform: scale(1.07);
+  box-shadow:
+    0 0 6px red,
+    0 0 12px rgba(255, 0, 0, 0.6);
+}
+
+.led-button {
+  padding: 10px;
+}
+
+/* segment positions */
+.a {
+  top: 0;
+  left: 12.5%;
+  width: 75%;
+  height: 5%;
+}
+.b {
+  top: 5%;
+  right: 0;
+  width: 8.33%;
+  height: 40%;
+}
+.c {
+  bottom: 5%;
+  right: 0;
+  width: 8.33%;
+  height: 40%;
+}
+.d {
+  bottom: 0;
+  left: 12.5%;
+  width: 75%;
+  height: 5%;
+}
+.e {
+  bottom: 5%;
+  left: 0;
+  width: 8.33%;
+  height: 40%;
+}
+.f {
+  top: 5%;
+  left: 0;
+  width: 8.33%;
+  height: 40%;
+}
+.g {
+  top: 47.5%;
+  left: 12.5%;
+  width: 75%;
+  height: 5%;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(3, 3, 29);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cell.active {
+  background-color: red;
+}
+
+.colon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  height: 120px;
+  margin: 8px 12px;
+}
+
+.colon .cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  cursor: default;
+}
+
+.digit-window {
+  position: relative;
+  width: 70px; /* must match .digit width */
+  height: 120px; /* must match .digit height */
+  padding: 10px;
+
+  overflow: hidden; /* THIS is the key */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+}
+
+.digit-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  will-change: transform;
+  transition: transform 0.4s ease-in-out;
+}
