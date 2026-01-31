@@ -15,13 +15,15 @@ showSegButton.addEventListener("click", () => {
 //   });
 // }
 
-// async function countdown(num) {
+// code for countdown for a single ledDigit object
+// async function countdown(num, digit) {
 //   for (let i = num; i >= 0; i--) {
-//     showNumber(i);
+//     digit.setValue(i);
 //     await new Promise((resolve) => setTimeout(resolve, 1000));
 //   }
 // }
 
+// code for showing a countdwon for double digits
 async function countdown(num, tenDigit, unitDigit) {
   //check if its a single digit number
   if (num < 10) {
@@ -106,14 +108,16 @@ function showTime() {
   secondtenDigit.setValue(secondsDigit2);
   secondunitDigit.setValue(secondsDigit1);
 }
+
+// code for showing current time
+// createTimeObjects()
 //setInterval(showTime, 1000);
 
 const scrollingDigit = new ScrollingDigit(wrapper);
 
+// code for counting from 0 to 9 smooothly using ScrollDigit class
 let n = 0;
 setInterval(() => {
   scrollingDigit.set(n);
   n = (n + 1) % 10;
 }, 1000);
-
-// console.log(currentTime);
