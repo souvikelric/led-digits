@@ -18,14 +18,35 @@ class ScrollingDigit {
       this.digits.push(digit);
     }
 
+    const fakeZero = new LedDigit(this.stack);
+    fakeZero.setValue(0);
+
     this.window.appendChild(this.stack);
     wrapper.appendChild(this.window);
+
+    requestAnimationFrame(() => {
+      this.stepheight =
+        this.digits[0].digit.offsetHeight +
+        parseInt(getComputedStyle(this.stack).gap);
+    });
 
     this.current = 0;
   }
 
   set(num) {
+    this.stack.style.transition = "transform 0.4s ease-in-out";
+    this.stack.style.transform = `translateY(-${this.stepheight * num}px)`;
+
+    if (this.current === 9 && num === 0) {
+      this.stack.style.transform = `translateY(-${10 * this.stepheight}px)`;
+
+      // after animation ends, snap back
+      setTimeout(() => {
+        this.stack.style.transition = "none";
+        this.stack.style.transform = "translateY(0px)";
+      }, 400);
+    }
+
     this.current = num;
-    this.stack.style.transform = `translateY(-${num * (DIGIT_HEIGHT + DIGIT_GAP)}px)`;
   }
 }
