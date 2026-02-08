@@ -13,10 +13,12 @@ const digitMap = {
 
 class LedDigit {
   segmentClasses = ["a", "b", "c", "d", "e", "f", "g"];
-  constructor(wrapperElement) {
+  constructor(wrapperElement, useMargin = true) {
     this.digit = document.createElement("div");
     this.digit.classList.add("digit");
-    //this.digit.style.marginLeft = "14px";
+    if (useMargin) {
+      this.digit.style.margin = "0 10px";
+    }
     this.segments = [];
     this.segmentMap = {};
     for (let cls of this.segmentClasses) {

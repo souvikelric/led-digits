@@ -14,12 +14,12 @@ class ScrollingDigit {
 
     // create digits 0–maxValue
     for (let i = 0; i <= this.maxValue; i++) {
-      const digit = new LedDigit(this.stack);
+      const digit = new LedDigit(this.stack, false);
       digit.setValue(i);
       this.digits.push(digit);
     }
 
-    const fakeZero = new LedDigit(this.stack);
+    const fakeZero = new LedDigit(this.stack, false);
     fakeZero.setValue(0);
 
     this.window.appendChild(this.stack);
