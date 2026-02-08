@@ -2,10 +2,16 @@ const wrapper = document.querySelector(".wrapper");
 wrapper.style.backgroundColor = "#141313";
 const showSegButton = document.querySelector("#show-segments");
 const showLedButton = document.querySelector("#show-led");
+const showDigitButton = document.querySelector("#show-digit");
+
+showDigitButton.addEventListener("click", () => {
+  wrapper.innerHTML = "";
+  showTimeScrollingDigits();
+});
 
 showLedButton.addEventListener("click", () => {
-  const digits = document.querySelectorAll(".digit");
-  digits.forEach((digit) => digit.classList.toggle("off"));
+  wrapper.innerHTML = "";
+  showTimeLedDigits();
 });
 
 showSegButton.addEventListener("click", () => {
@@ -52,6 +58,7 @@ function createColon() {
 }
 
 function createTimeObjects() {
+  let digits = [];
   let hourtenDigit = new LedDigit(wrapper);
   let hourunitDigit = new LedDigit(wrapper);
 
@@ -72,9 +79,22 @@ function createTimeObjects() {
 
   secondtenDigit.setValue(0);
   secondunitDigit.setValue(0);
+  digits.push(hourtenDigit);
+  digits.push(hourunitDigit);
+  digits.push(minutetenDigit);
+  digits.push(minuteunitDigit);
+  digits.push(secondtenDigit);
+  digits.push(secondunitDigit);
+  return digits;
 }
 
-function showTime() {
+function showTime(digits) {
+  let hourtenDigit = digits[0];
+  let hourunitDigit = digits[1];
+  let minutetenDigit = digits[2];
+  let minuteunitDigit = digits[3];
+  let secondtenDigit = digits[4];
+  let secondunitDigit = digits[5];
   let currentTime = new Date();
   let seconds = currentTime.getSeconds();
   let minutes = currentTime.getMinutes();
@@ -99,41 +119,46 @@ function showTime() {
   secondunitDigit.setValue(secondsDigit1);
 }
 
-// code for showing current time
-// createTimeObjects()
-//setInterval(showTime, 1000);
+// code for showing current time using LedDigit class
+function showTimeLedDigits() {
+  const currentDigits = createTimeObjects();
+  setInterval(() => showTime(currentDigits), 1000);
+}
 
-const scrollingDigit5 = new ScrollingDigit(wrapper, 5);
-const scrollingDigit6 = new ScrollingDigit(wrapper, 9);
+// call the below function to show time using scrolling digits
+function showTimeScrollingDigits() {
+  const scrollingDigit5 = new ScrollingDigit(wrapper, 5);
+  const scrollingDigit6 = new ScrollingDigit(wrapper, 9);
 
-const scrollingDigit3 = new ScrollingDigit(wrapper, 5);
-const scrollingDigit4 = new ScrollingDigit(wrapper, 9);
+  const scrollingDigit3 = new ScrollingDigit(wrapper, 5);
+  const scrollingDigit4 = new ScrollingDigit(wrapper, 9);
 
-const scrollingDigit = new ScrollingDigit(wrapper, 5);
-const scrollingDigit2 = new ScrollingDigit(wrapper, 9);
+  const scrollingDigit = new ScrollingDigit(wrapper, 5);
+  const scrollingDigit2 = new ScrollingDigit(wrapper, 9);
 
-// code for counting from 0 to 9 smooothly using ScrollDigit class
-setInterval(() => {
-  let currentTime = new Date();
-  let seconds = currentTime.getSeconds();
-  let minutes = currentTime.getMinutes();
-  let hours = currentTime.getHours();
+  // code for counting from 0 to 9 smooothly using ScrollDigit class
+  setInterval(() => {
+    let currentTime = new Date();
+    let seconds = currentTime.getSeconds();
+    let minutes = currentTime.getMinutes();
+    let hours = currentTime.getHours();
 
-  let secondsDigit1 = seconds % 10;
-  let secondsDigit2 = Math.floor(seconds / 10);
+    let secondsDigit1 = seconds % 10;
+    let secondsDigit2 = Math.floor(seconds / 10);
 
-  let hourDigit1 = hours % 10;
-  let hourDigit2 = Math.floor(hours / 10);
+    let hourDigit1 = hours % 10;
+    let hourDigit2 = Math.floor(hours / 10);
 
-  let minutetenDigit1 = minutes % 10;
-  let minutetenDigit2 = Math.floor(minutes / 10);
+    let minutetenDigit1 = minutes % 10;
+    let minutetenDigit2 = Math.floor(minutes / 10);
 
-  scrollingDigit.set(secondsDigit2);
-  scrollingDigit2.set(secondsDigit1);
+    scrollingDigit.set(secondsDigit2);
+    scrollingDigit2.set(secondsDigit1);
 
-  scrollingDigit4.set(minutetenDigit1);
-  scrollingDigit3.set(minutetenDigit2);
+    scrollingDigit4.set(minutetenDigit1);
+    scrollingDigit3.set(minutetenDigit2);
 
-  scrollingDigit5.set(hourDigit2);
-  scrollingDigit6.set(hourDigit1);
-}, 1000);
+    scrollingDigit5.set(hourDigit2);
+    scrollingDigit6.set(hourDigit1);
+  }, 1000);
+}

@@ -30,7 +30,6 @@ class ScrollingDigit {
         this.digits[0].digit.offsetHeight +
         parseInt(getComputedStyle(this.stack).gap);
     });
-
     this.current = 0;
   }
 
