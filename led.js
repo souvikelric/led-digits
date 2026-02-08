@@ -130,8 +130,12 @@ function showTimeScrollingDigits() {
   const scrollingDigit5 = new ScrollingDigit(wrapper, 5);
   const scrollingDigit6 = new ScrollingDigit(wrapper, 9);
 
+  createColon();
+
   const scrollingDigit3 = new ScrollingDigit(wrapper, 5);
   const scrollingDigit4 = new ScrollingDigit(wrapper, 9);
+
+  createColon();
 
   const scrollingDigit = new ScrollingDigit(wrapper, 5);
   const scrollingDigit2 = new ScrollingDigit(wrapper, 9);

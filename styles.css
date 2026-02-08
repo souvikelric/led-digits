@@ -47,8 +47,9 @@ body {
 }
 
 .seg.off {
+  transform: scale(0.7);
   background: rgb(75, 73, 73);
-  opacity: 0.5;
+  opacity: 0.9;
 }
 
 .seg.on {
