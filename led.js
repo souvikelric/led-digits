@@ -1,27 +1,17 @@
 const wrapper = document.querySelector(".wrapper");
 wrapper.style.backgroundColor = "#141313";
 const showSegButton = document.querySelector("#show-segments");
+const showLedButton = document.querySelector("#show-led");
+
+showLedButton.addEventListener("click", () => {
+  const digits = document.querySelectorAll(".digit");
+  digits.forEach((digit) => digit.classList.toggle("off"));
+});
 
 showSegButton.addEventListener("click", () => {
   const segments = document.querySelectorAll(".seg");
   segments.forEach((seg) => seg.classList.toggle("off"));
 });
-
-// function showNumber(num) {
-//   segments.forEach((seg) => seg.classList.remove("on"));
-
-//   digitMap[num].forEach((letter) => {
-//     document.querySelector(`.seg.${letter}`).classList.add("on");
-//   });
-// }
-
-// code for countdown for a single ledDigit object
-// async function countdown(num, digit) {
-//   for (let i = num; i >= 0; i--) {
-//     digit.setValue(i);
-//     await new Promise((resolve) => setTimeout(resolve, 1000));
-//   }
-// }
 
 // code for showing a countdwon for double digits
 async function countdown(num, tenDigit, unitDigit) {
