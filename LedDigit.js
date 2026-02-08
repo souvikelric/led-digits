@@ -16,6 +16,7 @@ class LedDigit {
   constructor(wrapperElement) {
     this.digit = document.createElement("div");
     this.digit.classList.add("digit");
+    //this.digit.style.marginLeft = "14px";
     this.segments = [];
     this.segmentMap = {};
     for (let cls of this.segmentClasses) {
