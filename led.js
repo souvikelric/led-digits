@@ -85,6 +85,10 @@ function createTimeObjects() {
   digits.push(minuteunitDigit);
   digits.push(secondtenDigit);
   digits.push(secondunitDigit);
+
+  // adding a GridSquares obj to test
+  //const gridSq1 = new GridSquares(wrapper, 10);
+
   return digits;
 }
 

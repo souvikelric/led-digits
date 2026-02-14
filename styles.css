@@ -61,8 +61,40 @@ body {
     0 0 12px rgba(255, 0, 0, 0.6);
 }
 
-.led-button {
-  padding: 10px;
+.grid-square {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(143, 31, 31);
+  cursor: pointer;
+}
+
+.grid-square:hover {
+  background-color: rgba(72, 164, 115, 0.8);
+}
+
+.grid-square.active {
+  background-color: red;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(540px);
+  gap: 1px;
+  margin-top: 10px;
+}
+
+.led-button,
+button {
+  padding: 10px 18px;
+  background-color: rgb(37, 37, 38);
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(3, 3, 29, 0.8);
 }
 
 /* segment positions */
