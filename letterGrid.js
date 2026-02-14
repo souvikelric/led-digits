@@ -51,8 +51,8 @@ function drawLetter(letter, offset) {
       ctx.fillRect(x, y, CELL_SIZE, CELL_SIZE);
     }
   }
-  offset += 20; // Add space between letters
+  return offset + cols * (CELL_SIZE + GAP) + 20;
 }
 
-drawLetter("A", offsetX);
-drawLetter("B", offsetX);
+offsetX = drawLetter("A", offsetX);
+offsetX = drawLetter("B", offsetX);
